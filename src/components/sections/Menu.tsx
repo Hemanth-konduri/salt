@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useViewport } from "@/hooks/useViewport";
 
 const MENU_CATEGORIES = ["Appetizers", "Mains", "Desserts", "Drinks"] as const;
 
@@ -136,6 +137,7 @@ const MENU_ITEMS: Record<
 export default function Menu() {
   const [activeCategory, setActiveCategory] =
     useState<(typeof MENU_CATEGORIES)[number]>("Appetizers");
+  const { isMobile, isTablet } = useViewport();
 
   const featuredItem = MENU_ITEMS[activeCategory][0];
 
@@ -144,7 +146,7 @@ export default function Menu() {
       id="menu"
       style={{
         position: "relative",
-        padding: "120px 0",
+        padding: isMobile ? "96px 0" : "120px 0",
         background:
           "radial-gradient(circle at top left, rgba(221,212,198,0.55), transparent 36%), #f4efe7",
         overflow: "hidden",
@@ -154,8 +156,8 @@ export default function Menu() {
         style={{
           position: "absolute",
           inset: "0 auto auto 0",
-          width: "38vw",
-          height: "38vw",
+          width: isMobile ? "70vw" : "38vw",
+          height: isMobile ? "70vw" : "38vw",
           borderRadius: "999px",
           background:
             "radial-gradient(circle, rgba(199,182,154,0.18) 0%, rgba(199,182,154,0) 72%)",
@@ -175,8 +177,8 @@ export default function Menu() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 0.95fr) minmax(320px, 1.05fr)",
-            gap: "40px",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 0.95fr) minmax(320px, 1.05fr)",
+            gap: isMobile ? "28px" : "40px",
             alignItems: "start",
             marginBottom: "56px",
           }}
@@ -256,14 +258,14 @@ export default function Menu() {
               background: "rgba(255,255,255,0.52)",
               border: "1px solid rgba(9,11,13,0.08)",
               borderRadius: "32px",
-              padding: "22px",
+              padding: isMobile ? "18px" : "22px",
               boxShadow: "0 24px 60px rgba(73, 59, 39, 0.08)",
             }}
           >
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "minmax(130px, 180px) minmax(0, 1fr)",
+                gridTemplateColumns: isMobile ? "1fr" : "minmax(130px, 180px) minmax(0, 1fr)",
                 gap: "22px",
                 alignItems: "center",
               }}
@@ -271,8 +273,8 @@ export default function Menu() {
               <div
                 style={{
                   position: "relative",
-                  width: "100%",
-                  aspectRatio: "1 / 1.12",
+              width: isMobile ? "100%" : "100%",
+              aspectRatio: "1 / 1.12",
                   borderRadius: "22px",
                   overflow: "hidden",
                 }}
@@ -407,6 +409,7 @@ export default function Menu() {
               color: "#8f877b",
               fontSize: "0.95rem",
               letterSpacing: "0.04em",
+              width: isMobile ? "100%" : "auto",
             }}
           >
             Curated selection for intimate dining and conversation.
@@ -428,7 +431,7 @@ export default function Menu() {
               transition={{ duration: 0.35, ease: "easeOut" }}
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gridTemplateColumns: isTablet ? "1fr" : "repeat(2, minmax(0, 1fr))",
                 columnGap: "42px",
               }}
             >
@@ -440,7 +443,7 @@ export default function Menu() {
                   transition={{ duration: 0.45, delay: idx * 0.06 }}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "84px minmax(0, 1fr)",
+                    gridTemplateColumns: isMobile ? "1fr" : "84px minmax(0, 1fr)",
                     gap: "18px",
                     alignItems: "center",
                     padding: "28px 0",
@@ -471,6 +474,7 @@ export default function Menu() {
                         display: "flex",
                         alignItems: "baseline",
                         gap: "14px",
+                        flexWrap: isMobile ? "wrap" : "nowrap",
                         marginBottom: "8px",
                       }}
                     >
@@ -481,19 +485,21 @@ export default function Menu() {
                           fontSize: "1.55rem",
                           lineHeight: 1,
                           color: "#090b0d",
-                          whiteSpace: "nowrap",
+                          whiteSpace: isMobile ? "normal" : "nowrap",
                         }}
                       >
                         {item.name}
                       </h3>
-                      <div
-                        style={{
-                          flex: 1,
-                          borderBottom: "1px dotted rgba(9,11,13,0.14)",
-                          minWidth: "20px",
-                          transform: "translateY(-3px)",
-                        }}
-                      />
+                      {!isMobile && (
+                        <div
+                          style={{
+                            flex: 1,
+                            borderBottom: "1px dotted rgba(9,11,13,0.14)",
+                            minWidth: "20px",
+                            transform: "translateY(-3px)",
+                          }}
+                        />
+                      )}
                       <span
                         style={{
                           fontFamily: "var(--font-playfair), serif",

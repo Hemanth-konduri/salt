@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useViewport } from "@/hooks/useViewport";
 
 const GALLERY_IMAGES = [
   {
@@ -45,13 +46,14 @@ const GALLERY_IMAGES = [
 // Gallery section that frames the restaurant through imagery, mood, and visual storytelling.
 export default function Gallery() {
   const [featured, ...supporting] = GALLERY_IMAGES;
+  const { isMobile, isTablet } = useViewport();
 
   return (
     <section
       id="gallery"
       style={{
         position: "relative",
-        padding: "120px 0 150px",
+        padding: isMobile ? "96px 0 110px" : "120px 0 150px",
         background:
           "linear-gradient(180deg, #f4efe7 0%, rgba(239,231,219,0.92) 100%)",
         overflow: "hidden",
@@ -62,8 +64,8 @@ export default function Gallery() {
           position: "absolute",
           top: "-10%",
           right: "-8%",
-          width: "34vw",
-          height: "34vw",
+          width: isMobile ? "64vw" : "34vw",
+          height: isMobile ? "64vw" : "34vw",
           borderRadius: "999px",
           background:
             "radial-gradient(circle, rgba(201,184,158,0.2) 0%, rgba(201,184,158,0) 72%)",
@@ -83,8 +85,8 @@ export default function Gallery() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 0.9fr) minmax(320px, 1.1fr)",
-            gap: "42px",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 0.9fr) minmax(320px, 1.1fr)",
+            gap: isMobile ? "24px" : "42px",
             alignItems: "end",
             marginBottom: "56px",
           }}
@@ -148,7 +150,7 @@ export default function Gallery() {
             style={{
               margin: 0,
               maxWidth: "560px",
-              justifySelf: "end",
+              justifySelf: isTablet ? "start" : "end",
               fontFamily: "var(--font-cormorant), serif",
               fontSize: "clamp(1.3rem, 2vw, 1.75rem)",
               lineHeight: 1.55,
@@ -164,7 +166,7 @@ export default function Gallery() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1.18fr) minmax(320px, 0.82fr)",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 1.18fr) minmax(320px, 0.82fr)",
             gap: "28px",
             alignItems: "stretch",
           }}
@@ -176,7 +178,7 @@ export default function Gallery() {
             transition={{ duration: 0.85 }}
             style={{
               position: "relative",
-              minHeight: "740px",
+              minHeight: isMobile ? "460px" : isTablet ? "620px" : "740px",
               borderRadius: "36px",
               overflow: "hidden",
               boxShadow: "0 30px 80px rgba(73, 59, 39, 0.12)",
@@ -201,9 +203,9 @@ export default function Gallery() {
             <div
               style={{
                 position: "absolute",
-                left: "32px",
-                right: "32px",
-                bottom: "30px",
+                left: isMobile ? "20px" : "32px",
+                right: isMobile ? "20px" : "32px",
+                bottom: isMobile ? "20px" : "30px",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "end",
@@ -255,7 +257,7 @@ export default function Gallery() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
               gap: "20px",
             }}
           >

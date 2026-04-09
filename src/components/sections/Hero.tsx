@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import { useViewport } from "@/hooks/useViewport";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,7 @@ export default function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const { isMobile, isTablet } = useViewport();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -64,7 +66,7 @@ export default function Hero() {
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "118svh",
+        minHeight: isMobile ? "auto" : "118svh",
         overflow: "hidden",
         backgroundColor: "#f4efe7",
       }}
@@ -99,7 +101,7 @@ export default function Hero() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "22%",
+          height: isMobile ? "14%" : "22%",
           background: "linear-gradient(to top, #f4efe7 0%, transparent 100%)",
           zIndex: 2,
           pointerEvents: "none",
@@ -110,11 +112,11 @@ export default function Hero() {
         style={{
           position: "relative",
           zIndex: 3,
-          minHeight: "118svh",
+          minHeight: isMobile ? "auto" : "118svh",
           display: "flex",
           alignItems: "center",
-          paddingTop: "124px",
-          paddingBottom: "96px",
+          paddingTop: isMobile ? "132px" : "124px",
+          paddingBottom: isMobile ? "72px" : "96px",
         }}
       >
         <div
@@ -124,12 +126,12 @@ export default function Hero() {
             margin: "0 auto",
             padding: "0 5vw",
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1.15fr) minmax(320px, 0.85fr)",
-            gap: "40px",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 1.15fr) minmax(320px, 0.85fr)",
+            gap: isMobile ? "28px" : "40px",
             alignItems: "end",
           }}
         >
-          <div style={{ maxWidth: "860px" }}>
+          <div style={{ maxWidth: isTablet ? "100%" : "860px" }}>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -184,10 +186,11 @@ export default function Hero() {
                   fontSize: "clamp(4.2rem, 8vw, 8.6rem)",
                   lineHeight: 0.92,
                   letterSpacing: "-0.055em",
-                  color: "#f4efe7",
-                }}
-              >
-                Salt, after
+                color: "#f4efe7",
+                wordBreak: "break-word",
+              }}
+            >
+              Salt, after
               </div>
               <div
                 style={{
@@ -197,10 +200,11 @@ export default function Hero() {
                   fontSize: "clamp(4.2rem, 8vw, 8.6rem)",
                   lineHeight: 0.92,
                   letterSpacing: "-0.06em",
-                  color: "#efe7dc",
-                }}
-              >
-                dark.
+                color: "#efe7dc",
+                wordBreak: "break-word",
+              }}
+            >
+              dark.
               </div>
             </div>
 
@@ -296,13 +300,13 @@ export default function Hero() {
             style={{
               justifySelf: "end",
               width: "100%",
-              maxWidth: "430px",
+              maxWidth: isTablet ? "100%" : "430px",
               background: "rgba(9,11,13,0.64)",
               border: "1px solid rgba(244,239,231,0.14)",
               backdropFilter: "blur(18px)",
               WebkitBackdropFilter: "blur(18px)",
               borderRadius: "34px",
-              padding: "30px 28px",
+              padding: isMobile ? "24px 20px" : "30px 28px",
               boxShadow: "0 28px 70px rgba(0,0,0,0.22)",
             }}
           >
@@ -326,7 +330,7 @@ export default function Hero() {
                   key={row.label}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "78px minmax(0, 1fr)",
+                    gridTemplateColumns: isMobile ? "1fr" : "78px minmax(0, 1fr)",
                     gap: "16px",
                     paddingBottom: "16px",
                     borderBottom:
@@ -365,7 +369,7 @@ export default function Hero() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))",
                 gap: "16px",
                 marginTop: "24px",
                 paddingTop: "22px",
