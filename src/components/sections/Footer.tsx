@@ -15,6 +15,7 @@ const SOCIAL_LINKS = [
   { label: "Twitter", href: "#" },
 ];
 
+// Footer section closing the experience with links, signup, and the brand signature.
 export default function Footer() {
   return (
     <footer

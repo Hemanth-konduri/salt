@@ -132,6 +132,7 @@ const MENU_ITEMS: Record<
   ],
 };
 
+// Menu section pairing category filters with featured dishes and detailed item listings.
 export default function Menu() {
   const [activeCategory, setActiveCategory] =
     useState<(typeof MENU_CATEGORIES)[number]>("Appetizers");
