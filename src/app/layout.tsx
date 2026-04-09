@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "Salt Progressive Kitchen | Rajahmundry",
   description:
     "A Salt-specific restaurant experience for Rajahmundry with a refined black, salt-white, and stone-inspired visual identity.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
