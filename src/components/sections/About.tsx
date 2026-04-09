@@ -9,6 +9,7 @@ const STATS = [
   { value: "4.2★", label: "Rating" },
 ];
 
+// About section that explains the restaurant story, visual language, and credibility.
 export default function About() {
   return (
     <section

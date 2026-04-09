@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Contact", href: "contact" },
 ];
 
+// Persistent navigation bar that anchors the user to major sections and the contact page.
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 

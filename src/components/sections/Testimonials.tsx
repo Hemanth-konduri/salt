@@ -25,6 +25,7 @@ const TESTIMONIALS = [
   },
 ];
 
+// Testimonials section featuring guest impressions and trust-building review highlights.
 export default function Testimonials() {
   return (
     <section

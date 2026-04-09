@@ -19,6 +19,7 @@ const INFO_ROWS = [
   { label: "Service", value: "Curated dining, cocktails, and a composed pace from welcome to final course." },
 ];
 
+// Hero section that introduces the brand mood, the primary message, and first actions.
 export default function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 
+// Location section with the address, timings, contact details, and map embed.
 export default function Location() {
   return (
     <section

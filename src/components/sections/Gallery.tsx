@@ -42,6 +42,7 @@ const GALLERY_IMAGES = [
   },
 ];
 
+// Gallery section that frames the restaurant through imagery, mood, and visual storytelling.
 export default function Gallery() {
   const [featured, ...supporting] = GALLERY_IMAGES;
 
