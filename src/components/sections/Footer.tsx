@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useViewport } from "@/hooks/useViewport";
 
 const EXPLORE_LINKS = [
   { label: "Menu", href: "#menu" },
@@ -17,13 +18,15 @@ const SOCIAL_LINKS = [
 
 // Footer section closing the experience with links, signup, and the brand signature.
 export default function Footer() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
     <footer
       id="contact"
       style={{
         background: "#090b0d",
         color: "#f4efe7",
-        padding: "96px 0 32px",
+        padding: isMobile ? "72px 0 28px" : "96px 0 32px",
         overflow: "hidden",
       }}
     >
@@ -37,8 +40,8 @@ export default function Footer() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1.4fr) repeat(2, minmax(180px, 0.7fr))",
-            gap: "48px",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 1.4fr) repeat(2, minmax(180px, 0.7fr))",
+            gap: isMobile ? "36px" : "48px",
             alignItems: "start",
           }}
         >
@@ -182,9 +185,10 @@ export default function Footer() {
               lineHeight: 0.82,
               letterSpacing: "-0.06em",
               fontWeight: 700,
-              whiteSpace: "nowrap",
+              whiteSpace: isMobile ? "normal" : "nowrap",
               textAlign: "center",
               color: "#f4efe7",
+              wordBreak: "break-word",
             }}
             initial="hidden"
             whileInView="visible"

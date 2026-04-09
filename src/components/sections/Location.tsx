@@ -1,15 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useViewport } from "@/hooks/useViewport";
 
 // Location section with the address, timings, contact details, and map embed.
 export default function Location() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
     <section
       id="location"
       style={{
         background: "#f4efe7",
-        padding: "160px 0",
+        padding: isMobile ? "96px 0" : "160px 0",
         position: "relative",
         borderTop: "1px solid rgba(9, 11, 13, 0.08)"
       }}
@@ -19,8 +22,8 @@ export default function Location() {
         <div 
           style={{ 
             display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", 
-            gap: "80px",
+            gridTemplateColumns: isTablet ? "1fr" : "repeat(auto-fit, minmax(400px, 1fr))", 
+            gap: isMobile ? "40px" : "80px",
             alignItems: "center"
           }}
         >
@@ -47,7 +50,7 @@ export default function Location() {
               style={{
                 fontFamily: "var(--font-playfair), serif",
                 fontWeight: 700,
-                fontSize: "clamp(3rem, 4.5vw, 4.5rem)",
+                fontSize: "clamp(2.5rem, 4.5vw, 4.5rem)",
                 lineHeight: 1.1,
                 letterSpacing: "-0.02em",
                 color: "#090b0d",
@@ -62,7 +65,7 @@ export default function Location() {
               
               <div>
                 <h4 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8f877b", margin: "0 0 12px 0" }}>Address</h4>
-                <p style={{ fontFamily: "var(--font-cormorant), serif", fontSize: "1.45rem", lineHeight: 1.5, color: "#090b0d", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-cormorant), serif", fontSize: isMobile ? "1.2rem" : "1.45rem", lineHeight: 1.5, color: "#090b0d", margin: 0 }}>
                   123 Culinary Avenue, Grand Road<br />
                   Rajahmundry, Andhra Pradesh
                 </p>
@@ -70,7 +73,7 @@ export default function Location() {
 
               <div>
                 <h4 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8f877b", margin: "0 0 12px 0" }}>Hours</h4>
-                <p style={{ fontFamily: "var(--font-cormorant), serif", fontSize: "1.45rem", lineHeight: 1.5, color: "#090b0d", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-cormorant), serif", fontSize: isMobile ? "1.2rem" : "1.45rem", lineHeight: 1.5, color: "#090b0d", margin: 0 }}>
                   Monday - Sunday<br />
                   12:00 PM – 11:30 PM
                 </p>
@@ -78,7 +81,7 @@ export default function Location() {
 
               <div>
                 <h4 style={{ fontFamily: "var(--font-dm-sans), sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#8f877b", margin: "0 0 12px 0" }}>Contact</h4>
-                <p style={{ fontFamily: "var(--font-cormorant), serif", fontSize: "1.45rem", lineHeight: 1.5, color: "#090b0d", margin: 0 }}>
+                <p style={{ fontFamily: "var(--font-cormorant), serif", fontSize: isMobile ? "1.2rem" : "1.45rem", lineHeight: 1.5, color: "#090b0d", margin: 0 }}>
                   reservations@saltkitchen.in<br />
                   +91 98765 43210
                 </p>
@@ -90,7 +93,7 @@ export default function Location() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                marginTop: "56px",
+                marginTop: isMobile ? "40px" : "56px",
                 padding: "16px 36px",
                 background: "#F4EFE7",
                 color: "#090b0d",
@@ -114,7 +117,7 @@ export default function Location() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            style={{ position: "relative", height: "600px" }}
+            style={{ position: "relative", height: isMobile ? "360px" : isTablet ? "460px" : "600px" }}
           >
             <div
               style={{

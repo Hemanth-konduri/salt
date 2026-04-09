@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useViewport } from "@/hooks/useViewport";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +29,7 @@ const CONTACT_CHANNELS = [
 export default function ContactPage() {
   const heroImageRef = useRef<HTMLDivElement>(null);
   const revealRootRef = useRef<HTMLDivElement>(null);
+  const { isMobile, isTablet } = useViewport();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -76,7 +78,7 @@ export default function ContactPage() {
       <section
         style={{
           position: "relative",
-          minHeight: "92svh",
+          minHeight: isMobile ? "78svh" : "92svh",
           overflow: "hidden",
           background: "#090b0d",
         }}
@@ -111,10 +113,10 @@ export default function ContactPage() {
             zIndex: 1,
             maxWidth: "1520px",
             margin: "0 auto",
-            padding: "32px 5vw 96px",
+            padding: isMobile ? "24px 5vw 64px" : "32px 5vw 96px",
             display: "flex",
             flexDirection: "column",
-            minHeight: "92svh",
+            minHeight: isMobile ? "78svh" : "92svh",
           }}
         >
           <div
@@ -160,7 +162,7 @@ export default function ContactPage() {
             style={{
               marginTop: "auto",
               maxWidth: "900px",
-              paddingTop: "80px",
+              paddingTop: isMobile ? "56px" : "80px",
             }}
           >
             <p
@@ -187,6 +189,7 @@ export default function ContactPage() {
                 lineHeight: 0.92,
                 letterSpacing: "-0.055em",
                 color: "#f4efe7",
+                wordBreak: "break-word",
               }}
             >
               Let&apos;s plan
@@ -223,7 +226,7 @@ export default function ContactPage() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1.05fr) minmax(320px, 0.95fr)",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 1.05fr) minmax(320px, 0.95fr)",
             gap: "32px",
             alignItems: "start",
           }}
@@ -234,7 +237,7 @@ export default function ContactPage() {
                 key={item.title}
                 data-reveal
                 style={{
-                  padding: "28px 30px",
+                  padding: isMobile ? "22px 22px" : "28px 30px",
                   borderRadius: "30px",
                   background: "rgba(255,255,255,0.62)",
                   border: "1px solid rgba(9,11,13,0.08)",
@@ -282,7 +285,7 @@ export default function ContactPage() {
           <aside
             data-reveal
             style={{
-              padding: "34px 32px",
+              padding: isMobile ? "26px 22px" : "34px 32px",
               borderRadius: "34px",
               background: "#090b0d",
               color: "#f4efe7",

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useViewport } from "@/hooks/useViewport";
 
 const STATS = [
   { value: "2024", label: "Opened" },
@@ -11,13 +12,15 @@ const STATS = [
 
 // About section that explains the restaurant story, visual language, and credibility.
 export default function About() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
     <section
       id="about"
       style={{
         position: "relative",
         background: "#f4efe7",
-        padding: "160px 0 60px 0",
+        padding: isMobile ? "100px 0 40px 0" : "160px 0 60px 0",
         overflow: "hidden",
       }}
     >
@@ -31,8 +34,8 @@ export default function About() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-            gap: "100px",
+            gridTemplateColumns: isTablet ? "1fr" : "repeat(auto-fit, minmax(400px, 1fr))",
+            gap: isMobile ? "48px" : "100px",
             alignItems: "center",
           }}
         >
@@ -42,7 +45,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 1 }}
-            style={{ position: "relative", height: "700px" }}
+            style={{ position: "relative", height: isMobile ? "420px" : isTablet ? "560px" : "700px" }}
           >
             <div
               style={{
@@ -166,8 +169,8 @@ export default function About() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "24px",
+                gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+                gap: isMobile ? "18px" : "24px",
                 paddingTop: "40px",
                 borderTop: "1px solid rgba(9, 11, 13, 0.1)"
               }}

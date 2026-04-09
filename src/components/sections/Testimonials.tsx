@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useViewport } from "@/hooks/useViewport";
 
 const TESTIMONIALS = [
   {
@@ -27,12 +28,14 @@ const TESTIMONIALS = [
 
 // Testimonials section featuring guest impressions and trust-building review highlights.
 export default function Testimonials() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
     <section
       id="testimonials"
       style={{
         position: "relative",
-        padding: "120px 0 150px",
+        padding: isMobile ? "96px 0 110px" : "120px 0 150px",
         background:
           "radial-gradient(circle at bottom left, rgba(210,193,167,0.18), transparent 32%), #f4efe7",
         overflow: "hidden",
@@ -48,8 +51,8 @@ export default function Testimonials() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 0.92fr) minmax(320px, 1.08fr)",
-            gap: "44px",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 0.92fr) minmax(320px, 1.08fr)",
+            gap: isMobile ? "24px" : "44px",
             alignItems: "start",
             marginBottom: "56px",
           }}
@@ -113,7 +116,7 @@ export default function Testimonials() {
             style={{
               margin: 0,
               maxWidth: "560px",
-              justifySelf: "end",
+              justifySelf: isTablet ? "start" : "end",
               fontFamily: "var(--font-cormorant), serif",
               fontSize: "clamp(1.3rem, 2vw, 1.75rem)",
               lineHeight: 1.55,
@@ -129,7 +132,7 @@ export default function Testimonials() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1.05fr) minmax(0, 0.95fr)",
+            gridTemplateColumns: isTablet ? "1fr" : "minmax(0, 1.05fr) minmax(0, 0.95fr)",
             gap: "28px",
             alignItems: "start",
           }}
@@ -143,7 +146,7 @@ export default function Testimonials() {
               background: "#090b0d",
               color: "#f4efe7",
               borderRadius: "34px",
-              padding: "42px 40px",
+              padding: isMobile ? "30px 24px" : "42px 40px",
               minHeight: "100%",
               boxShadow: "0 28px 70px rgba(73, 59, 39, 0.12)",
             }}
