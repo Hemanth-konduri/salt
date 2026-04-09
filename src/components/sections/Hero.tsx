@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
@@ -22,6 +23,7 @@ const INFO_ROWS = [
 export default function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -247,7 +249,7 @@ export default function Hero() {
               }}
             >
               <button
-                onClick={() => scrollTo("contact")}
+                onClick={() => router.push("/contact")}
                 style={{
                   fontFamily: "var(--font-dm-sans), sans-serif",
                   fontSize: "0.74rem",
@@ -262,7 +264,7 @@ export default function Hero() {
                   cursor: "pointer",
                 }}
               >
-                Reserve a Table
+                Contact Us
               </button>
               <button
                 onClick={() => scrollTo("menu")}

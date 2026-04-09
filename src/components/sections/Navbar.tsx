@@ -1,17 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const NAV_LINKS = [
   { label: "About", href: "about" },
   { label: "Menu", href: "menu" },
   { label: "Gallery", href: "gallery" },
-  { label: "Testimonials", href: "testimonials" },
-  { label: "Contact", href: "contact" },
+  { label: "Testimonials", href: "testimonials" }
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -21,6 +22,15 @@ export default function Navbar() {
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleNavClick = (href: string) => {
+    if (href === "contact") {
+      router.push("/contact");
+      return;
+    }
+
+    scrollTo(href);
   };
 
   return (
@@ -145,7 +155,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <button
-                  onClick={() => scrollTo(link.href)}
+                  onClick={() => handleNavClick(link.href)}
                   style={{
                     fontFamily: "var(--font-dm-sans), sans-serif",
                     fontSize: "0.76rem",
@@ -173,7 +183,7 @@ export default function Navbar() {
           </ul>
 
           <button
-            onClick={() => scrollTo("contact")}
+            onClick={() => router.push("/contact")}
             style={{
               fontFamily: "var(--font-dm-sans), sans-serif",
               fontSize: "0.76rem",
@@ -196,7 +206,7 @@ export default function Navbar() {
               e.currentTarget.style.background = "#090b0d";
             }}
           >
-            Reserve
+            Contact
           </button>
         </div>
       </div>
