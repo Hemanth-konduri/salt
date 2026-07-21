@@ -5,6 +5,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useViewport } from "@/hooks/useViewport";
+import Footer from "@/components/sections/Footer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,7 +91,7 @@ export default function ContactPage() {
             inset: 0,
             transform: "scale(1.05)",
             backgroundImage:
-              "linear-gradient(90deg, rgba(9,11,13,0.82) 0%, rgba(9,11,13,0.52) 44%, rgba(9,11,13,0.34) 100%), url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1920&q=85')",
+              "linear-gradient(90deg, rgba(9,11,13,0.82) 0%, rgba(9,11,13,0.52) 44%, rgba(9,11,13,0.34) 100%), url('/salt-image-2.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -384,6 +385,7 @@ export default function ContactPage() {
           </aside>
         </div>
       </section>
+      <Footer/>
     </main>
   );
 }

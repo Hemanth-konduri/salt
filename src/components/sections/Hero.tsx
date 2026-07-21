@@ -78,7 +78,7 @@ export default function Hero() {
           inset: 0,
           transform: "scale(1.06)",
           backgroundImage:
-            "linear-gradient(90deg, rgba(9,11,13,0.78) 0%, rgba(9,11,13,0.46) 34%, rgba(9,11,13,0.2) 58%, rgba(9,11,13,0.42) 100%), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=85')",
+            "linear-gradient(90deg, rgba(9,11,13,0.78) 0%, rgba(9,11,13,0.46) 34%, rgba(9,11,13,0.2) 58%, rgba(9,11,13,0.42) 100%), url('/restaurant-image-salt.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
